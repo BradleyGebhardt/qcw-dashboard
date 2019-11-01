@@ -6,8 +6,22 @@ html
         script(src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous")
     body
         .wrapper
-            header.header
-                h1 QCW Dashboard
-            block content
+            .sidebar
+                header.header
+                    h1 Welcome User
+                nav.navigation
+                    header.nav
+                        h3 Navigation
+                    .nav-group
+                        | Number of devices
+                        span.nav-arrow  >
+                    .nav-group Time spent 
+                        .nav-group-item.nav-group-active Overall
+                        .nav-group-item.nav-group-active Average per manufacturer
+            .content-pane
+                header.header
+                    h1 QCW Dashboard
+                block content
         script(src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0")
-        script(src="./javascripts/index.js")
+        script(src="./javascripts/dbData.js")
+        script(src="./javascripts/navigation.js")
