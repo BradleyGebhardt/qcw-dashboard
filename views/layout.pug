@@ -14,10 +14,11 @@ html
                         h3 Navigation
                     .nav-group
                         | Number of devices
-                        span.nav-arrow  >
-                    .nav-group Time spent 
-                        .nav-group-item.nav-group-active Overall
-                        .nav-group-item.nav-group-active Average per manufacturer
+                    .nav-group
+                        | Time spent  
+                        span.nav-arrow &gt;
+                        .nav-group-item(data-target='overall') Overall
+                        .nav-group-item(data-target='average') Average per manufacturer
             .content-pane
                 header.header
                     h1 QCW Dashboard
@@ -25,3 +26,4 @@ html
         script(src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0")
         script(src="./javascripts/dbData.js")
         script(src="./javascripts/navigation.js")
+        script(src="./javascripts/charts.js")

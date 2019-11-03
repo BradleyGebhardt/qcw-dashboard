@@ -57,3 +57,27 @@ html {
 .nav-group-item.nav-group-active {
 	display: block !important;
 }
+
+.nav-arrow {
+	pointer-events: none;
+	display: inline-block;
+	transition: all 0.25s;
+}
+
+.nav-arrow.nav-arrow-active {
+	transform: rotate(90deg);
+}
+
+.section {
+	display: none;
+}
+
+.section.display {
+	display: block;
+}
+
+.chart-container {
+	position: relative;
+	margin: 0 auto;
+	width: 75%;
+}
