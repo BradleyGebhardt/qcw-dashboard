@@ -13,12 +13,16 @@ html
                     header.nav
                         h3 Navigation
                     .nav-group
-                        | Number of devices
+                        | Number of devices 
+                        span.nav-arrow &gt;
+                        .nav-group-item(data-target='numPerDay') Per day
+                        .nav-group-item(data-target='numPerWeek') Per week
                     .nav-group
                         | Time spent  
                         span.nav-arrow &gt;
-                        .nav-group-item(data-target='overall') Overall
-                        .nav-group-item(data-target='average') Average per manufacturer
+                        .nav-group-item(data-target='timePerDay') Per day
+                        .nav-group-item(data-target='dwell') Average stay time
+                        //- .nav-group-item(data-target='average') Average per day
             .content-pane
                 header.header
                     h1 QCW Dashboard
