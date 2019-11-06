@@ -1,0 +1,44 @@
+doctype html
+html
+    head
+        title Dashboard
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css")
+        link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
+        link(rel="stylesheet" href="./stylesheets/matStyles.css")
+        script(src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    body
+        header
+            ul#stats-dropdown.dropdown-content
+                li
+                    a Per day
+                li
+                    a Per week
+            nav.nav-extended
+                .nav-wrapper.blue
+                    a.brand-logo.center QCW
+                    a.sidenav-trigger(data-target='mobile-nav')
+                        i.material-icons menu
+                    ul#nav-mobile.tabs.tabs-transparent.left.hide-on-med-and-down
+                        li.tab
+                            a(href='#perDay') Analytics per day
+                        li.tab
+                            a(href='#perWeek') Analytics per week
+                        li.tab
+                            a(href='#perMonth') Analytics per month
+            ul.sidenav#mobile-nav
+                li
+                    a Number per day
+                li
+                    a Dwelling time
+                li
+                    a Times of average day
+        main
+            block content
+        footer.page-footer.blue
+        script(src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js")
+        script(src="./javascripts/materializeInit.js")
+        //- script(src="./javascripts/dbData.js")
+        //- script(src="./javascripts/navigation.js")
+        //- script(src="./javascripts/charts.js")
