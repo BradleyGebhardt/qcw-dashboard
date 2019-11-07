@@ -19,20 +19,21 @@ html
                     a.brand-logo.center QCW
                     a.sidenav-trigger(data-target='mobile-nav')
                         i.material-icons menu
-                    ul#nav-mobile.tabs.tabs-transparent.left.hide-on-med-and-down
+                .nav-content.blue
+                    ul#nav-mobile.tabs.tabs-transparent.hide-on-med-and-down
                         li.tab
-                            a(href='#perDay') Analytics per day
+                            a(href='#statsDaily') Analytics per day
                         li.tab
-                            a(href='#perWeek') Analytics per week
+                            a(href='#statsWeekly') Analytics per week
                         li.tab
-                            a(href='#perMonth') Analytics per month
-            ul.sidenav#mobile-nav
-                li
-                    a Number per day
-                li
-                    a Dwelling time
-                li
-                    a Times of average day
+                            a(href='#statsMonthly') Analytics per month
+                ul#mobile-nav.sidenav.tabs
+                    li.tab
+                        a(href='#statsDaily') Analytics per day
+                    li.tab
+                        a(href='#statsWeekly') Analytics per week
+                    li.tab
+                        a(href='#statsMonthly') Analytics per month
         main
             block content
         footer.page-footer.blue
@@ -41,4 +42,4 @@ html
         script(src="./javascripts/materializeInit.js")
         //- script(src="./javascripts/dbData.js")
         //- script(src="./javascripts/navigation.js")
-        //- script(src="./javascripts/charts.js")
+        script(src="./javascripts/charts.js")

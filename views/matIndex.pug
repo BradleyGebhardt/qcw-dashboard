@@ -1,3 +1,27 @@
 extends matLayout
 
 block content
+    .row#statsDaily
+        .col.s12.l4.m6
+            h4 Number of unique people per day
+            canvas#numPerDay
+        .col.s12.l4.m6
+            h4 Busiest times of day
+            canvas#timesPerDay
+        .col.s12.l4.m6
+            h4 Average dwelling time
+            canvas#dwellTimes
+    .row#statsWeekly
+        .col.s12.l6
+            h4 Number of unique people per week
+            canvas#numPerWeek
+        .col.s12.l6
+            h4 Busiest day of week
+            canvas#timesPerWeek
+    .row#statsMonthly
+        .col.s12.l6
+            h4 Number of unique people per month
+            canvas#numPerMonth
+        .col.s12.l6
+            h4 Busiest week of month
+            canvas#timesPerMonth

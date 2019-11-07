@@ -1,7 +1,7 @@
-let ctx = document.getElementById('overallChart').getContext('2d');
+let ctx = document.getElementById('numPerDay').getContext('2d');
 
 let chart = new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
     data: {
         labels: ['Samsung', 'Sony', 'Xiaomi', 'Apple', 'Google'],
         datasets: [{

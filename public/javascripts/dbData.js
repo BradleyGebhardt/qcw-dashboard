@@ -15,7 +15,6 @@ async function findByMac(macAddress) {
         })
         .then(data => {
             console.log(macAddress + ' Time difference: ' + new Date(new Date(data[data.length - 1].time).getTime() - new Date(data[0].time).getTime()));
-            // console.log(new Date(data[data.length - 1].time) + ' <= => ' + new Date(data[0].time));
         });
 }
 
@@ -27,4 +26,16 @@ function populateList(data) {
     for (let i = 0; i < 60; i++) {
         findByMac(data[i]._id.mac);
     }
+}
+
+fetchData();
+
+async function fetchManufacturers() {
+    await fetch('http://localhost:3000/api/manufacturers')
+        .then(res => {
+            return res.json();
+        })
+        .then(data => {
+            console.log(data.length);
+        })
 }

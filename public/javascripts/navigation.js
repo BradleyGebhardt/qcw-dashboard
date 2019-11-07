@@ -3,7 +3,7 @@ $(document).ready(() => {
     const navItems = navGroups.children();
     const sections = $('.section');
     // navItems.toggleClass('nav-group-active');
-    $('.section.section-overall').toggleClass('display');
+    $('.section.section-timePerDay').toggleClass('display');
 
     navGroups.on('click', function (event) {
         // console.log($(event.target).children());
