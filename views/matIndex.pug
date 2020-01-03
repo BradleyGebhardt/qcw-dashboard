@@ -2,15 +2,18 @@ extends matLayout
 
 block content
     .row#statsDaily
-        .col.s12.l4.m6
+        .col.s12.l6.m6
             h4 Number of unique devices per day
             canvas#numPerDay
-        .col.s12.l4.m6
+        .col.s12.l6.m6
             h4 Busiest times of day
             canvas#timesPerDay
-        .col.s12.l4.m6
+        .col.s12.l6.m6
             h4 Average dwelling time
             canvas#dwellTimes
+        .col.s12.l6.m6
+            h4 Number per day of week
+            canvas#numPerDayOfWeek
     .row#statsWeekly
         .col.s12.l6
             h4 Number of unique people per week
