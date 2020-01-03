@@ -1,61 +1,35 @@
-async function func() {
-    let data = await fetch('http://localhost:3000/api/manus')
+getDayDwellTime();
+// getNumPerWeek();
+// getNumPerMonth();
+
+devicesPerPeriod('%25Y-%25m-%25d', 'numPerDay', 'line', 'Number of unique devices per day', 'Devices');
+devicesPerPeriod('%25H', 'timesPerDay', 'bar', 'Number of unique devices per hour', 'Devices');
+devicesPerPeriod('%25Y-%25U', 'numPerWeek', 'bar', 'Number of unique devices per week', 'Devices');
+devicesPerPeriod('%25Y-%25m', 'numPerMonth', 'bar', 'Number of unique devices per month', 'Devices');
+devicesPerPeriod('%25w', 'numPerDayOfWeek', 'bar', 'Number of unique devices per day of week', 'Devices');
+
+async function devicesPerPeriod(period, name, type, title, datasetLabel) {
+    let data = await getQueryData(`http://localhost:3000/api/numberOfDevices/${period}`);
+
+    createChart(name, type, title, datasetLabel, data.labels, data.values);
+}
+
+async function getDayDwellTime() {
+    let data = await fetch('http://localhost:3000/api/dwellPerDay')
         .then(data => {
-            return data.json();
+            return data.json()
         })
         .then(response => {
             return response;
         });
-    let newLabels = data.map(val => {
-        return val._id.Manufacturers;
-    })
-    let newData = data.map(val => {
-        return val.uniqueCount.length;
-    })
-
-    let cntx = document.getElementById('manufacturers').getContext('2d')
-
-    let chart = new Chart(cntx, {
-        type: 'line',
-        data: {
-            labels: newLabels,
-            datasets: [{
-                label: 'Manufacturers',
-                backgroundColor: [
-                    'rgba(255, 99, 132, 1)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)'
-                ],
-                data: newData
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Manufacturers and their frequency'
-            }
-        }
+    let days = data.map(val => {
+        return val._id.day
+    });
+    let time = data.map(val => {
+        return val.dwellTime
     })
 
-}
-
-// func();
-
-async function numberPerDayChart() {
-    let data = await getQueryData('http://localhost:3000/api/numPerDay');
-
-    createChart('numPerDay', 'line', 'Number of unique devices per day', 'Devices', data.labels, data.values);
-}
-
-async function getPerHourChart() {
-    let data = await getQueryData('http://localhost:3000/api/timesPerDay');
-
-    createChart('timesPerDay', 'bar', 'Number of unique devices per hour', 'Devices', data.labels, data.values);
-}
-
-async function getDayDwellTime() {
-
+    createChart('dwellTimes', 'bar', 'Dwell times per day in minutes', 'Dwell', days, time);
 }
 
 async function getQueryData(path) {
@@ -102,6 +76,3 @@ function createChart(name, type, title, datasetLabel, labels, values) {
         }
     })
 }
-
-numberPerDayChart();
-getPerHourChart();
