@@ -3,11 +3,11 @@ var router = express.Router();
 var Scan = require('../models/scan');
 
 /* GET home page. */
-router.get('/frameworked', (req, res, next) => {
+router.get('/', (req, res, next) => {
   res.render('matIndex');
 });
 
-router.get('/', (req, res) => {
+router.get('/custom', (req, res) => {
   res.render('index');
 });
 
