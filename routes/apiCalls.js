@@ -1,51 +1,88 @@
 const express = require('express');
 const router = express.Router();
 const Scan = require('../models/scan');
-const fs = require('fs');
 
-router.get('/mac', async (req, res) => {
-    const docs = await Scan.aggregate([
+router.get('/dwellPerDay', async (req, res) => {
+    let data = await Scan.aggregate([
         {
             $group: {
                 _id: {
-                    'mac': '$mac'
+                    day: {
+                        $dateToString: {
+                            format: '%Y-%m-%d',
+                            date: '$time'
+                        }
+                    },
+                    mac: '$mac'
+                },
+                min: {
+                    $min: '$time'
+                },
+                max: {
+                    $max: '$time'
                 }
             }
+        },
+        {
+            $group: {
+                _id: {
+                    day: '$_id.day'
+                },
+                dwellTime: {
+                    $avg: {
+                        $divide: [{
+                            $subtract: [
+                                '$max',
+                                '$min'
+                            ]
+                        },
+                            60000
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            $sort: {
+                _id: 1
+            }
         }
-    ]);
-    res.send(docs);
-});
-
-router.get('/mac/:mac', async (req, res) => {
-    let data = await executeFind('mac', req.params.mac);
+    ]).allowDiskUse(true);
     res.send(data);
 });
 
-async function executeFind(field, val) {
-    var docCursor = Scan.find({ field: val }).sort({ time: 1 }).cursor();
-    let docs = [];
-    await docCursor.eachAsync(doc => {
-        docs.push(doc);
-    });
-    return docs;
-}
-
-router.get('/manufacturers', async (req, res) => {
-    let docs = await getAllManufacturers();
-    res.send(docs);
-});
-
-async function getAllManufacturers() {
-    const docs = await Scan.aggregate([
+router.get('/numberOfDevices/:period', async (req, res) => {
+    let data = await Scan.aggregate([
         {
             $group: {
                 _id: {
-                    'manu': '$manu'
+                    day: {
+                        $dateToString: {
+                            format: `${req.params.period}`,
+                            date: '$time'
+                        }
+                    },
+                    mac: '$mac'
                 }
             }
+        },
+        {
+            $group: {
+                _id: {
+                    day: '$_id.day'
+                },
+                scannedDevices: {
+                    $sum: 1
+                }
+            }
+        },
+        {
+            $sort: {
+                '_id': 1
+            }
         }
-    ]);
-    return docs;
-}
+    ]).allowDiskUse(true);
+    res.send(data);
+});
 
 module.exports = router;
