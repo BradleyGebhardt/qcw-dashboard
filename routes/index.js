@@ -7,8 +7,4 @@ router.get('/', (req, res, next) => {
   res.render('matIndex');
 });
 
-router.get('/custom', (req, res) => {
-  res.render('index');
-});
-
 module.exports = router;
