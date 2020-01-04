@@ -1,13 +1,20 @@
 getDayDwellTime();
-// getNumPerWeek();
-// getNumPerMonth();
 
+// Number unique of devices per day chart
 devicesPerPeriod('%25Y-%25m-%25d', 'numPerDay', 'bar', 'Number of unique devices per day', 'Devices');
+// Number of unique devices per hour
 devicesPerPeriod('%25H', 'timesPerDay', 'bar', 'Number of unique devices per hour', 'Devices');
+// Number of unique devices per day of the week (sun - mon)
 devicesPerPeriod('%25w', 'numPerDayOfWeek', 'bar', 'Number of unique devices per day of week', 'Devices');
+// Number of unique devices per week
 devicesPerPeriod('%25Y-%25U', 'numPerWeek', 'bar', 'Number of unique devices per week', 'Devices');
+// Number of unique devices per month
 devicesPerPeriod('%25Y-%25m', 'numPerMonth', 'bar', 'Number of unique devices per month', 'Devices');
 
+/*
+    A method that uses the standardised data returned by the query
+    and to further generecise the creation of the charts
+*/
 async function devicesPerPeriod(period, name, type, title, datasetLabel) {
     let data = await getQueryData(`http://localhost:3000/api/numberOfDevices/${period}`);
 
@@ -32,6 +39,7 @@ async function getDayDwellTime() {
     createChart('dwellTimes', 'bar', 'Dwell times per day in minutes', 'Dwell', days, time);
 }
 
+// Returns the standardised data from the queries
 async function getQueryData(path) {
     let data = await fetch(path)
         .then(data => {
@@ -50,6 +58,7 @@ async function getQueryData(path) {
     return { labels, values }
 }
 
+// A method to create a chart
 function createChart(name, type, title, datasetLabel, labels, values) {
     let cntx = document.getElementById(name).getContext('2d')
 
