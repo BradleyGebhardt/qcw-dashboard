@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const Scan = require('../models/scan');
 
+/*
+    Route used to query the dwell time
+*/
 router.get('/dwellPerDay', async (req, res) => {
     let data = await Scan.aggregate([
         {
