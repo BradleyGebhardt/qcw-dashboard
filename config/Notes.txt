@@ -1,0 +1,29 @@
+Parameters:
+
+    -Signal Strength
+    -Distance
+        -Formula: Distance = 10 ^ ((Measured Power – RSSI)/(10 * N))
+    -Duration of the pings
+    -Elminate non clients
+        -Clusters
+        -Employees
+        -WiFi enabled non-phones (printers, cameras)
+    -Manufacturers
+        -Distinguish between the types of devices
+    -Sales vs Servicing
+
+What is wanted:
+
+    -Analytics
+        -General
+            -Average Dwell
+            -Number of visitors
+        -Daily
+            -Busiest Time
+        -Weekly
+            -Daily stats
+        -Monthly
+            -Busiest day
+            -Busiest week
+    -Ideas
+        -Heatmap type thing

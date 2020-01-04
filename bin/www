@@ -36,13 +36,16 @@ server.on('listening', onListening);
  * Establish a connection to the database
  */
 
-mongoose.connect(database.database, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then((db) => {
-    console.log('Connected to mongodb');
-  })
-  .catch(error => {
-    console.log(error);
+mongoose.connect(database.database, { useNewUrlParser: true, useUnifiedTopology: true, dbName: 'scanning_temp' })
+  .catch(err => {
+    console.log(err.name);
   });
+
+let db = mongoose.connection;
+
+db.once('open', () => {
+  console.log('Connected to MongoDB');
+});
 
 /**
  * Normalize a port into a number, string, or false.
