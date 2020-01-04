@@ -51,6 +51,10 @@ router.get('/dwellPerDay', async (req, res) => {
     res.send(data);
 });
 
+/*
+    A route that accepts a period in the form of a date format
+    in order to genericise the quering of similar data
+*/
 router.get('/numberOfDevices/:period', async (req, res) => {
     let data = await Scan.aggregate([
         {
