@@ -2,11 +2,11 @@ getDayDwellTime();
 // getNumPerWeek();
 // getNumPerMonth();
 
-devicesPerPeriod('%25Y-%25m-%25d', 'numPerDay', 'line', 'Number of unique devices per day', 'Devices');
+devicesPerPeriod('%25Y-%25m-%25d', 'numPerDay', 'bar', 'Number of unique devices per day', 'Devices');
 devicesPerPeriod('%25H', 'timesPerDay', 'bar', 'Number of unique devices per hour', 'Devices');
+devicesPerPeriod('%25w', 'numPerDayOfWeek', 'bar', 'Number of unique devices per day of week', 'Devices');
 devicesPerPeriod('%25Y-%25U', 'numPerWeek', 'bar', 'Number of unique devices per week', 'Devices');
 devicesPerPeriod('%25Y-%25m', 'numPerMonth', 'bar', 'Number of unique devices per month', 'Devices');
-devicesPerPeriod('%25w', 'numPerDayOfWeek', 'bar', 'Number of unique devices per day of week', 'Devices');
 
 async function devicesPerPeriod(period, name, type, title, datasetLabel) {
     let data = await getQueryData(`http://localhost:3000/api/numberOfDevices/${period}`);
