@@ -3,16 +3,16 @@ const router = express.Router();
 const Scan = require('../models/scan');
 
 /*
-    Route used to query the dwell time
+    Generecised Route used to query the dwell time
 */
-router.get('/dwellPerDay', async (req, res) => {
+router.get('/dwellTimes/:period', async (req, res) => {
     let data = await Scan.aggregate([
         {
             $group: {
                 _id: {
-                    day: {
+                    period: {
                         $dateToString: {
-                            format: '%Y-%m-%d',
+                            format: req.params.period,
                             date: '$time'
                         }
                     },
@@ -29,7 +29,7 @@ router.get('/dwellPerDay', async (req, res) => {
         {
             $group: {
                 _id: {
-                    day: '$_id.day'
+                    period: '$_id.period'
                 },
                 dwellTime: {
                     $avg: {
@@ -52,12 +52,12 @@ router.get('/dwellPerDay', async (req, res) => {
         }
     ]).allowDiskUse(true);
     res.send(data);
-});
+})
 
-/*
-    A route that accepts a period in the form of a date format
-    in order to genericise the quering of similar data
-*/
+// /*
+//     A route that accepts a period in the form of a date format
+//     in order to genericise the quering of similar data
+// */
 router.get('/numberOfDevices/:period', async (req, res) => {
     let data = await Scan.aggregate([
         {
